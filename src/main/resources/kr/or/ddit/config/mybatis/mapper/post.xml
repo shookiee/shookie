@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+<!-- 전체 게시글 리스트 조회 -->
+<select id="allPostList" resultType="postVo">
+SELECT *
+FROM	POST
+ORDER BY POSTID
+</select>
+
+<!-- 특정 게시판 게시글 조회 -->
+<select id="boardPostList" parameterType="int" resultType="postVo">
+SELECT *
+FROM POST
+WHERE BOARDID = #{boardId}
+</select>
+
+
+<!-- 게시판 게시글 갯수 -->
+<select id="postCnt" resultType="int">
+SELECT COUNT(*)
+FROM POST
+</select>
+
+
+<!-- 특정 게시판 게시글 리스트 조회 -->
+<select id="postList" parameterType="hashmap" resultType="postVo">
+SELECT POSTID
+     , NVL(PREFPOSTID, 0)
+     , TITLE
+     , LV
+     , NVL(GROUPID, 0)
+     , POST_DT
+     , USERID
+     , POST_YN
+     , RN
+FROM(
+    SELECT A.*, ROWNUM RN
+    FROM(
+        SELECT DISTINCT(PO.POSTID) POSTID, PO.PREFPOSTID, LPAD(' ', (LEVEL-1)*4) || PO.POSTTITLE TITLE, LEVEL LV, PO.GROUPID, PO.POST_DT, PO.USERID, PO.POST_YN
+        FROM POST PO, BOARD BO
+        WHERE PO.BOARDID = #{boardId} AND BO.BOARDID = #{boardId}
+        START WITH PO.PREFPOSTID IS NULL
+        CONNECT BY PRIOR PO.POSTID = PO.PREFPOSTID
+        ORDER SIBLINGS BY PO.GROUPID DESC, PO.POSTID)A)B
+    WHERE B.RN &gt;= (#{page}-1)*#{pageSize)+1 
+    AND B.RN &lt;= #{page}*#{pageSize}
+</select>
+
+
+</mapper>
