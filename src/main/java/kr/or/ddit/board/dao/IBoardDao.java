@@ -48,4 +48,16 @@ public interface IBoardDao {
 	* Method 설명 : 게시판 사용여부 변경
 	*/
 	int modifyBoard(BoardVO boardVo);
+
+
+	/**
+	 * Method : boardVo
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param boardId
+	 * @return
+	 * Method 설명 : 입력받은 게시판 아이디와 일치하는 게시판의 정보
+	 */
+	BoardVO getBoard(int boardId);
+
 }

@@ -8,6 +8,8 @@
 		<typeAlias alias="boardVo" type="kr.or.ddit.board.model.BoardVO" />
 		<typeAlias alias="postVo" type="kr.or.ddit.post.model.PostVO" />
 		<typeAlias alias="pageVo" type="kr.or.ddit.Paging.model.PageVO" />
+		<typeAlias alias="fileVo" type="kr.or.ddit.attachFile.model.AttachFileVO" />
+		<typeAlias alias="replyVo" type="kr.or.ddit.reply.model.ReplyVO" />
 	</typeAliases>
 
 	<environments default="development">
@@ -16,7 +18,7 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-				<property name="username" value="PC23" />
+				<property name="username" value="shookie" />
 				<property name="password" value="java" />
 			</dataSource>
 		</environment>
@@ -25,5 +27,7 @@
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/board.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/post.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/file.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/reply.xml" />
 	</mappers>
 </configuration>

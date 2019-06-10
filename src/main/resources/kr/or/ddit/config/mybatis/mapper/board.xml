@@ -36,4 +36,10 @@ UPDATE BOARD
 SET	   USE_YN = #{use_yn}
 WHERE  BOARDID = #{boardId}
 </update>
+
+<select id="getBoard" parameterType="int" resultType="boardVo">
+SELECT *
+FROM	BOARD
+WHERE	BOARDID = #{boardId}
+</select>
 </mapper>

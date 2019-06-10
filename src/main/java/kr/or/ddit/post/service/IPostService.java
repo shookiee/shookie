@@ -28,4 +28,83 @@ public interface IPostService {
 	*/
 	List<PostVO> boardPostList(int boardId);
 
+
+	
+	/**
+	 * Method : postPagingList
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param map
+	 * @return
+	 * Method 설명 : 게시글 페이징 리스트
+	 */
+	Map<String, Object> postPagingList(Map<String, Object> map);
+
+	
+	/**
+	 * Method : insertPost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postVo
+	 * @return
+	 * Method 설명 : 게시글 추가
+	 */
+	int insertPost(PostVO postVo);
+	
+	
+	/**
+	 * Method : postMaxCnt
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 마지막 게시글 아이디 조회
+	 */
+	int postMaxCnt();
+
+
+	/**
+	 * Method : getPost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postId
+	 * @return
+	 * Method 설명 : 게시글 상세 조회
+	 */
+	PostVO getPost(int postId);
+
+
+	/**
+	 * Method : updatePost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postVo
+	 * @return
+	 * Method 설명 : 게시글 수정
+	 */
+	int updatePost(PostVO postVo);
+
+
+	/**
+	 * Method : answerPost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postVo
+	 * @return
+	 * Method 설명 : 답글 등록
+	 */
+	int answerPost(PostVO postVo);
+
+
+	/**
+	 * Method : deletePost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postId
+	 * @return
+	 * Method 설명 : 게시글 삭제(사용여부 미사용으로 변경)
+	 */
+	int deletePost(int postId);
+
+
+	
 }

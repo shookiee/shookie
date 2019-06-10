@@ -48,10 +48,28 @@ $(document).ready(function() {
 
 			// 이부분에 에디터 validation 검증
 			if(validation()) {
-				$("#frm").submit();
+				$("#frm2").submit();
 			}
 		}
 	})
+	
+	// 사용자 등록 버튼 클릭 이벤트 핸들러
+		$("#userRegBtn").on("click", function() {
+			// 유효성 체크
+			// 여기까지 도달하면 유효성 검사 완료(submit)
+			$("#frm").submit();
+		})
+	var count = 1;
+	$("#plusFile").on("click", function() {
+		alert("plusFile");
+		if(count <=5 ){
+			$("#plusFile").after("<input type='file' name='file" +count+"'/>" );
+			count += 1;
+			
+		}else{
+			alert("파일은 최대 5개까지만 가능합니다.");
+		}
+	});
 });
 
 // 필수값 Check
@@ -66,12 +84,31 @@ function validation(){
 	return true;
 }
 
+
 </script>
 </head>
 <body>
-<form action="result.jsp" method="post" id="frm">
+
+<form action="${pageContext.request.contextPath }/postForm" class="form-horizontal" method="post" enctype="multipart/form-data" id="frm2">
+	<div class="form-group">
+		<div class="col-sm-8">
+			<input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="제목">
+		</div>
+		<div class="col-sm-2">
+		</div>
+	</div>
+
+
 	<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea> 
+	<input type="hidden" id="boardId" name="boardId" value="${boardId}"/>
+	<input type="hidden" id="userId" name="userId" value="${USER_INFO.userId }"/>
+
+<img id="plusFile" alt="" src="${pageContext.request.contextPath }/img/addfile.png">
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+		<input type="button" class="col-sm-1 btn btn-default" id="savebutton" value="등록" />
+	</div>
+</div>
 </form>
-<input type="button" id="savebutton" value="서버전송" />
 </body>
 </html>

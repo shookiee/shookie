@@ -34,6 +34,16 @@ public class PostVO {
 		this.lv = lv;
 	}
 
+	public PostVO(int postId, String userId, int boardId, String postTitle,
+			String postContent, int groupId) {
+		this.postId = postId;
+		this.userId = userId;
+		this.boardId = boardId;
+		this.postTitle = postTitle;
+		this.postContent = postContent;
+		this.groupId = groupId;
+	}
+
 	@Override
 	public String toString() {
 		return "PostVO [postId=" + postId + ", userId=" + userId + ", boardId="
