@@ -13,7 +13,7 @@ public interface IReplyService {
 	 * @return
 	 * Method 설명 : 해당 게시글의 댓글 전체 수
 	 */
-	int replyMaxCnt(int postId);
+	int replyMaxCnt();
 
 	/**
 	 * Method : insertReply
@@ -65,5 +65,14 @@ public interface IReplyService {
 	 * Method 설명 : 댓글 하나의 정보
 	 */
 	ReplyVO getReply(int replyId);
+
+	/**
+	* Method : replyCnt
+	* 작성자 : PC23
+	* 변경이력 :
+	* @return
+	* Method 설명 : 댓글 전체 갯수
+	*/
+	int replyCnt();
 
 }

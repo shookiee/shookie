@@ -31,15 +31,19 @@
 
 		
 		$(".delReply").on("click", function() {
-			var replyId = $(this).find(".replyId").text();
+			var replyId = $(this).parents("td").prevAll(".reId").html();
 			$("#replyId").val(replyId);
-			
 			$("#delFrm").submit();
 		})
 
 	})
 </script>
+<style>
+.reId{
+	display : none;
+}
 
+</style>
 </head>
 
 <body>
@@ -55,7 +59,6 @@
 			<div class="row">
 				<div class="col-sm-8 blog-main">
 					<h2 class="sub-header">${boardVo.boardName }</h2>
-
 					<form id="frm" class="form-horizontal" role="form"
 						action="${pageContext.request.contextPath }/downLoad"
 						enctype="mutipart/form-data" method="post">
@@ -100,12 +103,15 @@
 								<a
 									href="${pageContext.request.contextPath }/answer?postId=${postVo.postId}"
 									id="answerBtn" class="btn btn-default" type="submit">답글</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								
+								<c:if test="${USER_INFO.userId eq postVo.userId }">	
 								<a
 									href="${pageContext.request.contextPath }/modify?postId=${postVo.postId}"
 									id="updateBtn" class="btn btn-default" type="submit">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<a
 									href="${pageContext.request.contextPath }/delete?postId=${postVo.postId}"
 									id="deleteBtn" class="btn btn-default" type="submit">삭제</a>
+								</c:if>
 							</div>
 						</div>
 
@@ -119,10 +125,15 @@
 							</label>
 							<table>
 								<c:forEach items="${replyList}" var="reply">
-								<tr width="10px">
+								<tr>
+									<td class="reId">${reply.replyId }</td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;${reply.replyContent }</td>
 									<td>&nbsp;&nbsp;&nbsp;[${reply.userId } / <fmt:formatDate value="${reply.reply_dt }" pattern="yy-MM-dd hh:mm:ss"/>]</td>
-									<td>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default delReply">삭제</button>
+									<c:if test="${USER_INFO.userId eq reply.userId }">
+										<c:if test="${reply.reply_yn != 'n' }">
+											<td>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default delReply">삭제</button></td>
+										</c:if>
+									</c:if>
 								</tr>
 								</c:forEach>
 							</table>

@@ -46,7 +46,7 @@ public class ReplyController extends HttpServlet {
 		
 		ReplyVO replyVo = new ReplyVO();
 		replyVo.setPostId(postId);
-		replyVo.setReplyId(replyService.replyMaxCnt(postId) == 0 ? 1 : replyService.replyMaxCnt(postId)+1);
+		replyVo.setReplyId(replyService.replyCnt() == 0 ? 1 : replyService.replyMaxCnt()+1);
 		replyVo.setReplyContent(replyContent);
 		replyVo.setUserId(userId);
 		

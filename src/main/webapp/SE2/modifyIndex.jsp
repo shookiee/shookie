@@ -92,14 +92,14 @@ function validation(){
 <form action="${pageContext.request.contextPath }/modify" class="form-horizontal" method="post" enctype="multipart/form-data" id="frm2">
 	<div class="form-group">
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="제목">
+			<input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="제목" value="${postVo.postTitle }">
 		</div>
 		<div class="col-sm-2">
 		</div>
 	</div>
 
 
-	<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea> 
+	<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;">${postVo.postContent }</textarea> 
 	<input type="hidden" id="boardId" name="boardId" value="${boardId}"/>
 	<input type="hidden" id="userId" name="userId" value="${USER_INFO.userId }"/>
 	<input type="hidden" id="postId" name="postId" value="${postId }"/>
@@ -110,6 +110,8 @@ function validation(){
 		<input type="button" class="col-sm-1 btn btn-default" id="savebutton" value="완료" />
 	</div>
 </div>
+
+
 </form>
 </body>
 </html>

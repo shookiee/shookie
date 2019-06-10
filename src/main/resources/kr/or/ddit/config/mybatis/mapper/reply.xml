@@ -4,8 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reply">
 <!-- 댓글 전체 수 -->
-<select id="replyMaxCnt" parameterType="int" resultType="int">
+<select id="replyMaxCnt" resultType="int">
 SELECT  max(REPLYID)
+FROM	REPLY
+</select>
+
+<!-- 댓글 전체 수 -->
+<select id="replyCnt" resultType="int">
+SELECT  COUNT(*)
 FROM	REPLY
 </select>
 
@@ -44,7 +50,7 @@ WHERE	  POSTID = #{postId}
 UPDATE	  REPLY
 SET		  REPLYCONTENT = '삭제된 댓글 입니다.'
 		, REPLY_YN = 'n'
-WHERE	  POSTID = #{postId}		
+WHERE	  REPLYID = #{replyId}		
 </update>
 
 

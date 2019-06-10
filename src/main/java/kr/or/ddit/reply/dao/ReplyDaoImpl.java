@@ -18,9 +18,9 @@ public class ReplyDaoImpl implements IReplyDao {
 	 * Method 설명 : 해당 게시글의 댓글 전체 수
 	 */
 	@Override
-	public int replyMaxCnt(int postId) {
+	public int replyMaxCnt() {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
-		int replyMaxCnt = sqlSession.selectOne("reply.replyMaxCnt", postId);
+		int replyMaxCnt = sqlSession.selectOne("reply.replyMaxCnt");
 		sqlSession.close();
 		
 		return replyMaxCnt;
@@ -114,6 +114,17 @@ public class ReplyDaoImpl implements IReplyDao {
 		sqlSession.close();
 		
 		return replyVo;
+	}
+
+
+
+	@Override
+	public int replyCnt() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int replyCnt = sqlSession.selectOne("reply.replyCnt");
+		sqlSession.close();
+		
+		return replyCnt;
 	}
 
 }

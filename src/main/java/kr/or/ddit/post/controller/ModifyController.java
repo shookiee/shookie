@@ -47,6 +47,11 @@ public class ModifyController extends HttpServlet {
 		int postId = Integer.parseInt(request.getParameter("postId"));
 
 		request.setAttribute("postId", postId);
+		
+		PostVO postVo = postService.getPost(postId);
+		
+		request.setAttribute("postVo", postVo);
+		
 		request.getRequestDispatcher("/post/modify.jsp").forward(request,
 				response);
 	}

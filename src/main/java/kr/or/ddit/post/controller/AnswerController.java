@@ -58,7 +58,7 @@ public class AnswerController extends HttpServlet {
 		int groupId = prefPostVo.getGroupId();
 		int boardId = prefPostVo.getBoardId();
 		logger.debug("prefPostId : {}", prefPostId);
-		int postId = postService.postMaxCnt() == 0 ? 1 : postService.postMaxCnt();
+		int postId = postService.postMaxCnt() == 0 ? 1 : postService.postMaxCnt() + 1;
 		logger.debug("postId : {}", postId);
 		String userId = request.getParameter("userId");
 		logger.debug("userId : {}", userId);
@@ -105,6 +105,7 @@ public class AnswerController extends HttpServlet {
 				}
 			}
 			
+			response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
 		} else {
 			response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
 		}

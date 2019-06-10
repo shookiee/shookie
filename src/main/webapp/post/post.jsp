@@ -28,9 +28,12 @@
 
 			var postId = $(this).find(".postId").text();
 			$("#postId").val(postId);
-			
+			var post_yn = $(this).find(".post_yns").val()
+			$("#post_yn").val(post_yn);
 			//#frm을 이용하여 submit();
-			$("#frm").submit();
+			if($("#post_yn").val() == "y"){
+				$("#frm").submit();
+			}
 		})
 	})
 	
@@ -54,6 +57,8 @@
 						
 						<form id="frm" action="${pageContext.request.contextPath }/read" >
 							<input type="hidden" id="postId" name="postId" >
+							<input type="hidden" id="userId" value="${USER_INFO.userId }">
+							<input type="hidden" id="post_yn" value="${post.post_yn}">
 						</form>
 						
 						
@@ -68,27 +73,32 @@
 
 								<c:forEach items="${postPagingList}" var="post">
 									<tr class="postTr">
-										<td class="postId">${post.postId }</td>
-										<c:choose>
-											<c:when test="${post.lv > 1 }">
-												<td>
-												<c:forEach begin="1" end="${post.lv}">
-													&nbsp;&nbsp;&nbsp;&nbsp;
-												</c:forEach>
-												${post.postTitle}</td>
-											</c:when>
-											<c:otherwise>
-												<td>${post.postTitle}</td>
-											</c:otherwise>
-										</c:choose>
+									<form>
+										<input type="hidden" class="post_yns" value="${post.post_yn }">
+									</form>
+										<td class="postId">${post.postId }</td>	
+											<c:choose>
+												<c:when test="${post.lv > 1 }">
+													<td>
+													<c:forEach begin="1" end="${post.lv}">
+														&nbsp;&nbsp;&nbsp;&nbsp;
+													</c:forEach>
+													└▶ ${post.postTitle}</td>
+												</c:when>
+												<c:otherwise>
+													<td>${post.postTitle}</td>
+												</c:otherwise>
+											</c:choose>
 										<td>${post.userId }</td>
 										<td><fmt:formatDate value="${post.post_dt }" pattern="yyyy-MM-dd a hh:mm:ss"/></td>
 									</tr>
 								</c:forEach>
 							</table>
 						</div>
-
-						<a href="${pageContext.request.contextPath }/postForm?boardId=${boardVo.boardId}&userId=${USER_INFO.userId}" class="btn btn-default pull-right">게시글 작성</a>
+						
+						<c:if test="${USER_INFO != null }">
+							<a href="${pageContext.request.contextPath }/postForm?boardId=${boardVo.boardId}&userId=${USER_INFO.userId}" class="btn btn-default pull-right">게시글 작성</a>
+						</c:if>
 						<div class="text-center">
 							<ul class="pagination">
 

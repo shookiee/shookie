@@ -35,10 +35,12 @@ public class DeleteReplyController extends HttpServlet {
 		int replyId = Integer.parseInt(request.getParameter("replyId"));
 		ReplyVO replyVo = replyService.getReply(replyId);
 		int postId = replyVo.getPostId();
+		logger.debug("deleteReply postId : {}", postId);
+		
 		int deleteReply = replyService.deleteReply(replyId);
 		
 		if(deleteReply == 1) {
-			response.sendRedirect(request.getContextPath() + "post?postId=" + postId);
+			response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
 		}
 	}
 

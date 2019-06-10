@@ -21,8 +21,8 @@ public class ReplyServiceImpl implements IReplyService {
 	 * Method 설명 : 해당 게시글의 댓글 전체 수
 	 */
 	@Override
-	public int replyMaxCnt(int postId) {
-		return replyDao.replyMaxCnt(postId);
+	public int replyMaxCnt() {
+		return replyDao.replyMaxCnt();
 	}
 
 	/**
@@ -88,6 +88,18 @@ public class ReplyServiceImpl implements IReplyService {
 	@Override
 	public ReplyVO getReply(int replyId) {
 		return replyDao.getReply(replyId);
+	}
+
+	/**
+	* Method : replyCnt
+	* 작성자 : PC23
+	* 변경이력 :
+	* @return
+	* Method 설명 : 댓글 전체 갯수
+	*/
+	@Override
+	public int replyCnt() {
+		return replyDao.replyCnt();
 	}
 
 }
