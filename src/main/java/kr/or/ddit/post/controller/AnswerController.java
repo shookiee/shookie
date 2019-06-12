@@ -53,7 +53,9 @@ public class AnswerController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		logger.debug("answerController doPost()");
 		
+		logger.debug("answer controller postId(param) : {}", request.getParameter("postId"));
 		int prefPostId = Integer.parseInt(request.getParameter("postId"));
+		
 		PostVO prefPostVo = postService.getPost(prefPostId);
 		int groupId = prefPostVo.getGroupId();
 		int boardId = prefPostVo.getBoardId();
@@ -102,17 +104,17 @@ public class AnswerController extends HttpServlet {
 				
 				if (result >= 1) {
 					response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
+				} else {
+					response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);		
 				}
 			}
 			
-			response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
 		} else {
-			response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
+			response.sendRedirect(request.getContextPath() + "/post?boardId=" + boardId);
 		}
-	
+		
 		
 		
 	}
-	
 
 }

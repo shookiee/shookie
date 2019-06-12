@@ -44,13 +44,14 @@ public class ModifyController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("ModifyController doGet()");
 		String userId = request.getParameter("userId");
+		
 		int postId = Integer.parseInt(request.getParameter("postId"));
-
 		request.setAttribute("postId", postId);
-		
 		PostVO postVo = postService.getPost(postId);
-		
 		request.setAttribute("postVo", postVo);
+		
+		List<AttachFileVO> fileList = fileService.getFileList(postId);
+		request.setAttribute("fileList", fileList);
 		
 		request.getRequestDispatcher("/post/modify.jsp").forward(request,
 				response);
@@ -59,53 +60,65 @@ public class ModifyController extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
+		logger.debug("modifyController doPost()");
 		int postId = Integer.parseInt(request.getParameter("postId"));
 		String userId = request.getParameter("userId");
 		String postTitle = request.getParameter("postTitle");
 		String postContent = request.getParameter("smarteditor");
 
+		String[] delFileIds = request.getParameterValues("delFile");
+		
+		
+		if (delFileIds.length > 0) {
+			fileService.delUpdateFiles(delFileIds);
+		}
+		
 		PostVO postVo = new PostVO();
 		postVo.setPostId(postId);
 		postVo.setPostTitle(postTitle);
 		postVo.setPostContent(postContent);
+		
+		int boardId = postVo.getBoardId();
 
 		int updateCnt = postService.updatePost(postVo);
 
 		if (updateCnt == 1) {
+			
+		
+			
+			Part file1 = request.getPart("file1");
+			Part file2 = request.getPart("file2");
+			Part file3 = request.getPart("file3");
+			Part file4 = request.getPart("file4");
+			Part file5 = request.getPart("file5");
 
-			List<AttachFileVO> exFileList = fileService.getFileList(postId);
-			if (exFileList != null) {
-				int deleteCnt = fileService.deleteFile(postId);
-
-				Part file1 = request.getPart("file1");
-				Part file2 = request.getPart("file2");
-				Part file3 = request.getPart("file3");
-				Part file4 = request.getPart("file4");
-				Part file5 = request.getPart("file5");
-
-				List<Part> fileList = new ArrayList<Part>();
-				fileList.add(file1);
-				fileList.add(file2);
-				fileList.add(file3);
-				fileList.add(file4);
-				fileList.add(file5);
-
-				int result = 0;
-				List<AttachFileVO> uploadFileList = PartUtil.fileList(postId,
-						fileList);
-				if (uploadFileList != null) {
-					result = fileService.insertFile(uploadFileList);
-
-					if (result >= 1) {
-						response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
-					}
+			
+			List<Part> fileList = new ArrayList<Part>();
+			fileList.add(file1);
+			fileList.add(file2);
+			fileList.add(file3);
+			fileList.add(file4);
+			fileList.add(file5);
+			
+			int result = 0;
+			List<AttachFileVO> uploadFileList =  PartUtil.fileList(postId, fileList);
+			
+			if (uploadFileList != null) {
+				result = fileService.insertFile(uploadFileList);
+				
+				if (result >= 1) {
+					response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
+				} else {
+					response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);		
 				}
-
 			}
+			
 		} else {
 			response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
 		}
+		
+		
+		
 	}
 
 }

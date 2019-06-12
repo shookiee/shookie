@@ -29,4 +29,12 @@ DELETE
 FROM	ATTACHFILE
 WHERE	POSTID = #{postId}
 </delete>
+
+<delete id="delUpdateFiles" parameterType="string">
+	DELETE 
+	FROM	ATTACHFILE
+	WHERE	FILEID = #{fileId}
+</delete>
+
+
 </mapper>

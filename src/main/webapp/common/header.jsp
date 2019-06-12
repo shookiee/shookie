@@ -11,7 +11,7 @@
                class="icon-bar"></span> <span class="icon-bar"></span> <span
                class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#">SHOOKIE's Board &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <a class="navbar-brand" href="#">SHOOKIE's Board &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      
 		
 		<c:set var="userName" value="${USER_INFO.name }님"/>

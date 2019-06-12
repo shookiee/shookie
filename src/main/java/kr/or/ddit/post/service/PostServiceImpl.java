@@ -144,6 +144,21 @@ public class PostServiceImpl implements IPostService {
 
 
 
+	/**
+	* Method : postCnt
+	* 작성자 : PC23
+	* 변경이력 :
+	* @return
+	* Method 설명 : 게시글 전체 수 조회
+	*/
+	@Override
+	public int AllPostCnt() {
+		return postDao.AllPostCnt();
+	}
+
+
+
+
 
 
 

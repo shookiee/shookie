@@ -64,5 +64,33 @@ public class AttachFileServiceImpl implements IAttachFileService {
 		return fileDao.deleteFile(postId);
 	}
 
+	
+	/**
+	* Method : delUpdateFiles
+	* 작성자 : PC23
+	* 변경이력 :
+	* @param delFileIds
+	* Method 설명 : 게시글 수정할때 파일이 수정되었으면 기존의 파일데이터 삭제
+	*/
+	@Override
+	public void delUpdateFiles(String[] delFileIds) {
+		int delCntSum = 0;
+		
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		
+		for(String delFileId : delFileIds){
+			int delCnt = fileDao.delUpdateFiles(sqlSession ,delFileId);
+			
+			if (delCnt != 1) {
+				sqlSession.rollback();
+				break;
+			}
+			delCntSum += delCnt;
+			
+		}
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
 
 }

@@ -24,25 +24,24 @@
 		$(".filelabel").on("click", function() {
 			$("#frm").submit();
 		})
-		
-		$("#addReply").on("click", function(){
-			$("#replyFrm").submit();			
+
+		$("#addReply").on("click", function() {
+			$("#replyFrm").submit();
 		})
 
-		
 		$(".delReply").on("click", function() {
 			var replyId = $(this).parents("td").prevAll(".reId").html();
 			$("#replyId").val(replyId);
 			$("#delFrm").submit();
 		})
+		
 
 	})
 </script>
 <style>
-.reId{
-	display : none;
+.reId {
+	display: none;
 }
-
 </style>
 </head>
 
@@ -103,14 +102,14 @@
 								<a
 									href="${pageContext.request.contextPath }/answer?postId=${postVo.postId}"
 									id="answerBtn" class="btn btn-default" type="submit">답글</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								
-								<c:if test="${USER_INFO.userId eq postVo.userId }">	
+
+								<c:if test="${USER_INFO.userId eq postVo.userId }">
+									<a
+										href="${pageContext.request.contextPath }/modify?postId=${postVo.postId}"
+										id="updateBtn" class="btn btn-default" type="submit">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<a
-									href="${pageContext.request.contextPath }/modify?postId=${postVo.postId}"
-									id="updateBtn" class="btn btn-default" type="submit">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a
-									href="${pageContext.request.contextPath }/delete?postId=${postVo.postId}"
-									id="deleteBtn" class="btn btn-default" type="submit">삭제</a>
+										href="${pageContext.request.contextPath }/delete?postId=${postVo.postId}"
+										id="deleteBtn" class="btn btn-default" type="submit">삭제</a>
 								</c:if>
 							</div>
 						</div>
@@ -119,29 +118,35 @@
 
 					<hr>
 
-					<form class="form-horizontal" role="form" action="${pageContext.request.contextPath }/delReply?replyId=${reply.replyId}" method="post">
+					<form class="form-horizontal" role="form"
+						action="${pageContext.request.contextPath }/delReply?replyId=${reply.replyId}"
+						method="post">
 						<div class="form-group">
-							<label for="reply" class="col-sm-2 control-label">댓글
-							</label>
+							<label for="reply" class="col-sm-2 control-label">댓글 </label>
 							<table>
 								<c:forEach items="${replyList}" var="reply">
-								<tr>
-									<td class="reId">${reply.replyId }</td>
-									<td>&nbsp;&nbsp;&nbsp;&nbsp;${reply.replyContent }</td>
-									<td>&nbsp;&nbsp;&nbsp;[${reply.userId } / <fmt:formatDate value="${reply.reply_dt }" pattern="yy-MM-dd hh:mm:ss"/>]</td>
-									<c:if test="${USER_INFO.userId eq reply.userId }">
-										<c:if test="${reply.reply_yn != 'n' }">
-											<td>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default delReply">삭제</button></td>
+									<tr>
+										<td class="reId">${reply.replyId }</td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;${reply.replyContent }</td>
+										<td>&nbsp;&nbsp;&nbsp;[${reply.userId } / <fmt:formatDate
+												value="${reply.reply_dt }" pattern="yy-MM-dd hh:mm:ss" />]
+										</td>
+										<c:if test="${USER_INFO.userId eq reply.userId }">
+											<c:if test="${reply.reply_yn != 'n' }">
+												<td>&nbsp;&nbsp;&nbsp;
+													<button type="button" class="btn btn-default delReply">삭제</button>
+												</td>
+											</c:if>
 										</c:if>
-									</c:if>
-								</tr>
+									</tr>
 								</c:forEach>
 							</table>
 						</div>
 					</form>
 
-					
-					<form id="delFrm" action="${pageContext.request.contextPath }/delReply?postId=${postVo.postId}">
+
+					<form id="delFrm"
+						action="${pageContext.request.contextPath }/delReply?postId=${postVo.postId}">
 						<input type="hidden" id="replyId" name="replyId">
 					</form>
 
@@ -151,12 +156,14 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2">
 								<div class="col-sm-6">
-									<input type="text" class=" form-control" name="replyContent" placeholder="댓글입력">
+									<input type="text" class=" form-control" name="replyContent"
+										placeholder="댓글입력">
 								</div>
-									<button type="button" id="addReply" class="btn btn-default">등록</button>							
+								<button type="button" id="addReply" class="btn btn-default">등록</button>
 							</div>
 						</div>
 					</form>
+
 
 				</div>
 			</div>

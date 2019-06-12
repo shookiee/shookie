@@ -56,5 +56,10 @@ public class AttachFileDaoImpl implements IAttachFileDao {
 		return deleteCnt;
 	}
 
+	@Override
+	public int delUpdateFiles(SqlSession sqlSession, String delFileId) {
+		return sqlSession.delete("file.delUpdateFiles", delFileId);
+	}
+
 
 }

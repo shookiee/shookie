@@ -70,9 +70,14 @@ public class PostController extends HttpServlet {
 		logger.debug("pageVo : {}", pageVo);
 		Map<String, Object> resultMap = postService.postPagingList(map);
 		int pagination = (int) resultMap.get("pagination");
+		
+		if(pagination == 0) {
+			pagination = 1;
+		}
+		
 		List<PostVO> postPagingList = (List<PostVO>) resultMap.get("postPagingList");
 		
-		request.setAttribute("paginationSize", pagination);
+		request.setAttribute("pagination", pagination);
 		request.setAttribute("postPagingList", postPagingList);
 		request.setAttribute("pageVo", pageVo);
 		

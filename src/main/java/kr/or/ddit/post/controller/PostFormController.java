@@ -49,7 +49,7 @@ public class PostFormController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int postId = postService.postMaxCnt() == 0 ? 1 : postService.postMaxCnt()+1;
+		int postId = postService.AllPostCnt() == 0 ? 1 : postService.postMaxCnt()+1;
 		String userId = request.getParameter("userId");
 		String boardIdStr = request.getParameter("boardId");
 		int boardId = Integer.parseInt(boardIdStr);
@@ -61,6 +61,7 @@ public class PostFormController extends HttpServlet {
 		logger.debug("postContent : {}", postContent);
 		
 		PostVO postVo = new PostVO(postId, userId, boardId, postTitle, postContent, postId);
+		logger.debug("postFormController postVo : {}", postVo);
 		int insertPost = postService.insertPost(postVo);
 		
 		if(insertPost == 1) {
@@ -89,11 +90,13 @@ public class PostFormController extends HttpServlet {
 				
 				if (result >= 1) {
 					response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);
+				} else {
+					response.sendRedirect(request.getContextPath() + "/read?postId=" + postId);		
 				}
 			}
 			
 		} else {
-			response.sendRedirect(request.getContextPath() + "/post");
+			response.sendRedirect(request.getContextPath() + "/post?boardId=" + boardId);
 		}
 		
 		

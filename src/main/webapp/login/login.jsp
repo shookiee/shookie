@@ -31,9 +31,9 @@
 			<h2 class="form-signin-heading">Please sign in</h2>
 
 			<label for="userId" class="sr-only">USER ID</label> 
-			<input type="text" id="userId" name="userId" class="form-control" placeholder="ID" value="admin"> 
+			<input type="text" id="userId" name="userId" class="form-control" placeholder="ID" value="sally"> 
 			<label for="pass" class="sr-only">Password</label> 
-			<input type="password" id="pass" name="pass" class="form-control" placeholder="Password" value="admin">
+			<input type="password" id="pass" name="pass" class="form-control" placeholder="Password" value="sally1234">
 
 
 			<button id="signinBtn"class="btn btn-lg btn-primary btn-block" type="submit">Sign

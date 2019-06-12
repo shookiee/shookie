@@ -35,6 +35,7 @@ VALUES(
 SELECT *
 FROM	REPLY
 WHERE	POSTID = #{postId}
+ORDER BY REPLYID ASC
 </select>
 
 <!-- 게시글 삭제 시 해당 댓글 삭제(사용 여부만 미사용으로 업데이트 -->

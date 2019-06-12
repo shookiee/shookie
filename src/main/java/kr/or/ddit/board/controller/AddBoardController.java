@@ -62,7 +62,7 @@ public class AddBoardController extends HttpServlet {
 		
 		if(addCnt == 1) {
 			session.setAttribute("boardList", boardList);
-			response.sendRedirect(request.getContextPath() + "/main.jsp");
+			response.sendRedirect(request.getContextPath() + "/board");
 		} else {
 			request.getRequestDispatcher("/board/board.jsp").forward(request, response);
 		}

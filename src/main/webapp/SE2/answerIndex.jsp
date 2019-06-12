@@ -61,13 +61,13 @@ $(document).ready(function() {
 		})
 	var count = 1;
 	$("#plusFile").on("click", function() {
-		alert("plusFile");
+	
 		if(count <=5 ){
-			$("#plusFile").after("<input type='file' name='file" +count+"'/>" );
+			$("#plus").after("<br><input type='file' name='file" +count+"'/>" );
 			count += 1;
 			
 		}else{
-			alert("파일은 최대 5개까지만 가능합니다.");
+			alert("파일 업로드는 최대 5개까지만 가능합니다.");
 		}
 	});
 });
@@ -86,12 +86,21 @@ function validation(){
 
 
 </script>
+
+<style>
+#plusFile{
+	margin-left : 100px;
+}
+#savebutton{
+	margin-left : 20px;
+}
+</style>
 </head>
 <body>
 
 <form action="${pageContext.request.contextPath }/answer" class="form-horizontal" method="post" enctype="multipart/form-data" id="frm2">
 	<div class="form-group">
-		<div class="col-sm-8">
+		<div class="col-sm-11">
 			<input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="제목">
 		</div>
 		<div class="col-sm-2">
@@ -102,11 +111,11 @@ function validation(){
 	<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea> 
 	<input type="hidden" id="boardId" name="boardId" value="${boardId}"/>
 	<input type="hidden" id="userId" name="userId" value="${USER_INFO.userId }"/>
-	<input type="hidden" id="postId" name="postId" value="${postId }"/>
-
-<img id="plusFile" alt="" src="${pageContext.request.contextPath }/img/addfile.png">
+	<input type="hidden" id="userId" name="postId" value="${postId}"/>
+<br><br>
 <div class="form-group">
-	<div class="col-sm-offset-2 col-sm-10">
+	<div id="plus" class="col-sm-offset-2 col-sm-10">
+	 	<button type="button" id="plusFile" class="col-sm-2 btn btn-default">파일 업로드</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" class="col-sm-1 btn btn-default" id="savebutton" value="등록" />
 	</div>
 </div>

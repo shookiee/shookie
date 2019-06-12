@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import kr.or.ddit.board.model.BoardVO;
 import kr.or.ddit.board.service.BoardServiceImpl;
 import kr.or.ddit.board.service.IBoardService;
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -44,12 +45,14 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("45 LoginController doPost()");
 		String userId = request.getParameter("userId");
-		String pass = request.getParameter("pass");
+		String password = request.getParameter("pass");
+		String encryptPassword = KISA_SHA256.encrypt(password);
+		
 		
 		UserVO userVo = userService.getUser(userId);
 		List<BoardVO> boardList = boardService.boardList();
 		
-		if(userVo != null && userVo.getUserId().equals(userId) && userVo.getPass().equals(pass)) {
+		if(userVo != null && userVo.getUserId().equals(userId) && userVo.getPass().equals(encryptPassword)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("USER_INFO", userVo);
 			session.setAttribute("boardList", boardList);

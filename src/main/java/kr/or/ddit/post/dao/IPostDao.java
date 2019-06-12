@@ -115,4 +115,14 @@ public interface IPostDao {
 	int deletePost(int postId);
 
 
+	/**
+	* Method : postCnt
+	* 작성자 : PC23
+	* 변경이력 :
+	* @return
+	* Method 설명 : 게시글 전체 수 조회
+	*/
+	int AllPostCnt();
+
+
 }

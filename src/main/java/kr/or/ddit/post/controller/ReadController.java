@@ -61,6 +61,7 @@ public class ReadController extends HttpServlet {
 		BoardVO boardVo = boardService.getBoard(boardId);
 		
 		request.setAttribute("boardVo", boardVo);
+	
 
 		List<ReplyVO> replyList = replyService.replyList(postId);
 		logger.debug("replyList : {}", replyList);

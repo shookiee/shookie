@@ -40,5 +40,14 @@ public interface IAttachFileDao {
 	 * Method 설명 : 게시글 수정 시 해당 게시글에 첨부된 파일 삭제
 	 */
 	int deleteFile(int postId);
+
+	/**
+	* Method : delUpdateFiles
+	* 작성자 : PC23
+	* 변경이력 :
+	* @param delFileIds
+	* Method 설명 : 게시글 수정할때 파일이 수정되었으면 기존의 파일데이터 삭제
+	*/
+	int delUpdateFiles(SqlSession sqlSession, String delFileId);
 	
 }

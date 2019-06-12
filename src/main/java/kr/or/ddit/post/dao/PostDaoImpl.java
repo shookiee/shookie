@@ -186,6 +186,24 @@ public class PostDaoImpl implements IPostDao {
 
 
 
+	/**
+	* Method : postCnt
+	* 작성자 : PC23
+	* 변경이력 :
+	* @return
+	* Method 설명 : 게시글 전체 수 조회
+	*/
+	@Override
+	public int AllPostCnt() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int postCnt = sqlSession.selectOne("post.allPostCnt");
+		sqlSession.close();
+		
+		return postCnt;
+	}
+
+
+
 
 
 	

@@ -7,7 +7,7 @@
 <!-- 특정 사용자 조회 -->
 <select id="getUser" parameterType="string" resultType="userVo">
 SELECT *
-FROM	BOARD_USERS
+FROM	USERS
 WHERE	USERID = #{userId}
 </select>
 

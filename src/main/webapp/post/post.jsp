@@ -70,7 +70,7 @@
 									<th>작성자</th>
 									<th>작성일시</th>
 								</tr>
-
+ 
 								<c:forEach items="${postPagingList}" var="post">
 									<tr class="postTr">
 									<form>
@@ -111,16 +111,27 @@
 
 								<c:choose>
 									<c:when test="${pageVo.page == 1 }">
-										<li class="disabled"><span>«</span></li>
+										<li class="disabled"><span>≪</span></li>
 									</c:when>
 									<c:otherwise>
 										<li>
-											<a href="${pageContext.request.contextPath }/post?boardId=${boardVo.boardId }&page=${pageVo.page -1}&pageSize=${pageVo.pageSize}">«</a>
+											<a href="${pageContext.request.contextPath }/post?boardId=${boardVo.boardId }&page=1&pageSize=${pageVo.pageSize}">≪</a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+
+								<c:choose>
+									<c:when test="${pageVo.page == 1 }">
+										<li class="disabled"><span>＜</span></li>
+									</c:when>
+									<c:otherwise>
+										<li>
+											<a href="${pageContext.request.contextPath }/post?boardId=${boardVo.boardId }&page=${pageVo.page -1}&pageSize=${pageVo.pageSize}">＜</a>
 										</li>
 									</c:otherwise>
 								</c:choose>
 								
-								<c:forEach begin="1" end="${paginationSize }" step="1" var="i">
+								<c:forEach begin="1" end="${pagination }" step="1" var="i">
 									<li>
 									 	<c:choose>
 										 	<c:when test="${pageVo.page  == i}">
@@ -134,12 +145,22 @@
 								</c:forEach>
 								
 									<c:choose>
-										<c:when test="${pageVo.page == paginationSize }">
-											<li class="disabled"><span>»</span></li>
+										<c:when test="${pageVo.page == pagination }">
+											<li class="disabled"><span>＞</span></li>
 										</c:when>
 	
 										<c:otherwise>
-											<li><a href="${pageContext.request.contextPath }/post?boardId=${boardVo.boardId }&page=${pageVo.page + 1}&pageSize=${pageVo.pageSize}">»</a></li>
+											<li><a href="${pageContext.request.contextPath }/post?boardId=${boardVo.boardId }&page=${pageVo.page + 1}&pageSize=${pageVo.pageSize}">＞</a></li>
+										</c:otherwise>								
+									</c:choose>
+
+									<c:choose>
+										<c:when test="${pageVo.page == pagination }">
+											<li class="disabled"><span>≫</span></li>
+										</c:when>
+	
+										<c:otherwise>
+											<li><a href="${pageContext.request.contextPath }/post?boardId=${boardVo.boardId }&page=${pagination}&pageSize=${pageVo.pageSize}">≫</a></li>
 										</c:otherwise>								
 									</c:choose>
 							</ul>
