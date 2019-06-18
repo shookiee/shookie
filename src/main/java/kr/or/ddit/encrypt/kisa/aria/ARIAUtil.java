@@ -1,7 +1,3 @@
-/**
- * 전자정부 제공 ARIAUTIL
- * ARIAUtil
- */
 //package crdf.regi.egov.security;
 package kr.or.ddit.encrypt.kisa.aria;
 
@@ -85,7 +81,7 @@ public class ARIAUtil {
 	}
 
 	/*
-	 *Aria 복호화
+	 *Aria ë³µí¸í
 	 */
 	public static String ariaDecrypt(String strHex, String privateKey) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
@@ -158,7 +154,7 @@ public class ARIAUtil {
 
 
 	/*
-	 *Aria 기본 복호화
+	 *Aria ê¸°ë³¸ ë³µí¸í
 	 */
 	public static String ariaDecrypt(String strHex) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
@@ -185,7 +181,7 @@ public class ARIAUtil {
 		}
 	}
 	/*
-	*aria 기본 암호화
+	*aria ê¸°ë³¸ ìí¸í
 	*/
 	public static String ariaEncrypt(String str) 
 	throws InvalidKeyException, UnsupportedEncodingException {
@@ -210,7 +206,7 @@ public class ARIAUtil {
 	}
 	
 	/*
-	*캐릭터셋 변경 암호화
+	*ìºë¦­í°ì ë³ê²½ ìí¸í
 	*/
 	public static String ariaCharEncrypt(String str, String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException {
@@ -233,8 +229,8 @@ public class ARIAUtil {
 	}
 	
 	/*
-	*캐릭터셋 변경 암호화
-	*(서버타입설정 열람서버 : read, 등록관리서버 : regi)
+	*ìºë¦­í°ì ë³ê²½ ìí¸í
+	*(ìë²íìì¤ì  ì´ëìë² : read, ë±ë¡ê´ë¦¬ìë² : regi)
 	*/
 	public static String ariaCharEncrypt(String str, String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException {
@@ -262,7 +258,7 @@ public class ARIAUtil {
 
 
 	/*
-	 *Aria 캐릭터셋 변경 복호화
+	 *Aria ìºë¦­í°ì ë³ê²½ ë³µí¸í
 	 */
 	public static String ariaCharDecrypt(String strHex,  String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
@@ -284,8 +280,8 @@ public class ARIAUtil {
 	}
 	
 	/*
-	 *Aria 캐릭터셋 변경 복호화
-	 *(서버타입설정 열람서버 : read, 등록관리서버 : regi)
+	 *Aria ìºë¦­í°ì ë³ê²½ ë³µí¸í
+	 *(ìë²íìì¤ì  ì´ëìë² : read, ë±ë¡ê´ë¦¬ìë² : regi)
 	 */
 	public static String ariaCharDecrypt(String strHex,  String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
