@@ -1,10 +1,6 @@
 package kr.or.ddit.board.service;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
-
-import org.junit.Test;
 
 import kr.or.ddit.board.dao.BoardDaoImpl;
 import kr.or.ddit.board.dao.IBoardDao;
@@ -12,7 +8,6 @@ import kr.or.ddit.board.model.BoardVO;
 
 public class BoardServiceImpl implements IBoardService {
 
-	private IBoardService service;
 
 	private IBoardDao boardDao = new BoardDaoImpl();
 
