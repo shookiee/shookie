@@ -6,6 +6,14 @@ import kr.or.ddit.attachFile.model.AttachFileVO;
 
 public interface IAttachFileService {
 	
+	/**
+	* Method : insertFile
+	* 작성자 : PC23
+	* 변경이력 :
+	* @param uploadFileList
+	* @return
+	* Method 설명 : 첨부파일 업로드
+	*/
 	int insertFile(List<AttachFileVO> uploadFileList);
 
 	/**
@@ -28,15 +36,7 @@ public interface IAttachFileService {
 	 */
 	AttachFileVO getFile(String fileId);
 
-	/**
-	 * Method : deleteFile
-	 * 작성자 : SHOOKIE
-	 * 변경이력 :
-	 * @param postId
-	 * @return
-	 * Method 설명 : 게시글 수정 시 해당 게시글에 첨부된 파일 삭제
-	 */
-	int deleteFile(int postId);
+
 
 	/**
 	* Method : delUpdateFiles

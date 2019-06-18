@@ -12,7 +12,7 @@ ORDER BY BOARDID
 
 <!-- 게시판 전체 수 조회 -->
 <select id="boardCnt" resultType="int">
-SELECT COUNT(*)
+SELECT /*+ INDEX_FFS(board pk_board)*/ COUNT(*)
 FROM	BOARD
 </select>
 
@@ -37,6 +37,8 @@ SET	   USE_YN = #{use_yn}
 WHERE  BOARDID = #{boardId}
 </update>
 
+
+<!-- 입력받은 게시판 아이디와 일치하는 게시판의 정보 -->
 <select id="getBoard" parameterType="int" resultType="boardVo">
 SELECT *
 FROM	BOARD

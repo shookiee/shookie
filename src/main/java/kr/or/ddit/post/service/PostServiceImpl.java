@@ -71,7 +71,14 @@ public class PostServiceImpl implements IPostService {
 
 
 
-
+	/**
+	 * Method : insertPost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postVo
+	 * @return
+	 * Method 설명 : 게시글 등록
+	 */
 	@Override
 	public int insertPost(PostVO postVo) {
 		return postDao.insertPost(postVo);
@@ -79,7 +86,13 @@ public class PostServiceImpl implements IPostService {
 
 
 
-
+	/**
+	 * Method : postMaxCnt
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 마지막 게시글 아이디 조회
+	 */
 	@Override
 	public int postMaxCnt() {
 		return postDao.postMaxCnt();
@@ -87,7 +100,14 @@ public class PostServiceImpl implements IPostService {
 
 
 
-
+	/**
+	 * Method : getPost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postId
+	 * @return
+	 * Method 설명 : 게시글 상세조회
+	 */
 	@Override
 	public PostVO getPost(int postId) {
 		return postDao.getPost(postId);

@@ -1,4 +1,4 @@
-package kr.or.ddit.post;
+package kr.or.ddit.post.dao;
 
 import static org.junit.Assert.*;
 
@@ -70,44 +70,24 @@ public class PostDaoTest {
 		
 	}
 	 
+
 	/**
 	* Method : postCntTest
 	* 작성자 : PC23
 	* 변경이력 :
-	* Method 설명 : 게시판 게시글 갯수
+	* Method 설명 : 특정 게시판 게시글 갯수 확인 테스트
 	*/
 	@Test
 	public void postCntTest() {
 		/***Given***/
-	
-		
+		int boardId = 1;
+
 		/***When***/
-		int postCnt = postDao.postCnt();
-		
+		int cnt = postDao.postCnt(boardId);
+
 		/***Then***/
-		assertEquals(4, postCnt);
+		assertEquals(3, cnt);
 	}
-	
-	
-	@Test
-	public void postListTest() {
-		/***Given***/
-		int boardId = 2;
-		PageVO pageVo = new PageVO(1, 10);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("boardId", boardId);
-		map.put("pageVo", pageVo);
-		
-		/***When***/
-		List<PostVO> postList = postDao.postList(pageVo);
-		
-		/***Then***/
-		assertNotNull(postList);
-		assertEquals(10, postList.size());
-	}
-	
-	
 	
 
 	

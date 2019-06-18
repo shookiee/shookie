@@ -3,6 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="file">
+
+<!-- 첨부파일 추가 -->
 <insert id="insertFile" parameterType="fileVo">
 INSERT INTO ATTACHFILE
 VALUES(
@@ -13,23 +15,21 @@ VALUES(
 )
 </insert>
 
+<!-- 해당 게시글에 첨부된 파일 리스트 -->
 <select id="getFileList" parameterType="int" resultType="fileVo">
 SELECT *
 FROM	ATTACHFILE
 WHERE	POSTID = #{postId}
 </select>
+
+<!-- 해당 게시글에 첨부된 파일 조회 -->
 <select id="getFile" parameterType="string" resultType="fileVo">
 SELECT *
 FROM	ATTACHFILE
 WHERE	FILEID = #{fileId}
 </select>
 
-<delete id="deleteFile" parameterType="int">
-DELETE 
-FROM	ATTACHFILE
-WHERE	POSTID = #{postId}
-</delete>
-
+<!-- 게시글 수정 시 파일이 수정되었으면 기존의 파일 데이터를 삭제 -->
 <delete id="delUpdateFiles" parameterType="string">
 	DELETE 
 	FROM	ATTACHFILE

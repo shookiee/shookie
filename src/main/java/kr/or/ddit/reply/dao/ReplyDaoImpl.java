@@ -86,7 +86,14 @@ public class ReplyDaoImpl implements IReplyDao {
 	}
 
 
-
+	/**
+	 * Method : deleteReply
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param replyId
+	 * @return
+	 * Method 설명 : 댓글 삭제(사용여부 변경)
+	 */
 	@Override
 	public int deleteReply(int replyId) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
@@ -117,7 +124,13 @@ public class ReplyDaoImpl implements IReplyDao {
 	}
 
 
-
+	/**
+	* Method : replyCnt
+	* 작성자 : PC23
+	* 변경이력 :
+	* @return
+	* Method 설명 : 댓글 전체 개수
+	*/
 	@Override
 	public int replyCnt() {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();

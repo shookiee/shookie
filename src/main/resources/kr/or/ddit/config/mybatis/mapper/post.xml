@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="post">
+
 <!-- 전체 게시글 리스트 조회 -->
 <select id="allPostList" resultType="postVo">
 SELECT *
@@ -16,7 +17,6 @@ SELECT *
 FROM POST
 WHERE BOARDID = #{boardId}
 </select>
-
 
 <!-- 게시판 게시글 갯수 -->
 <select id="postCnt" parameterType="int" resultType="int">
@@ -65,11 +65,13 @@ VALUES(
 )
 </insert>
 
+<!-- 게시글 전체(삭제된_미사용중인 게시글 포함) 개수 -->
 <select id="postMaxCnt" resultType="int">
 SELECT MAX(POSTID)
 FROM POST
 </select>
 
+<!-- 게시글 아이디에 해당하는 게시글 정보 -->
 <select id="getPost" parameterType="int" resultType="postVo">
 SELECT *
 FROM POST

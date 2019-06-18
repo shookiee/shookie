@@ -106,6 +106,13 @@ public class PostDaoImpl implements IPostDao {
 
 
 
+	/**
+	 * Method : postMaxCnt
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 마지막 게시글 아이디 조회
+	 */
 	@Override
 	public int postMaxCnt() {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
@@ -115,7 +122,14 @@ public class PostDaoImpl implements IPostDao {
 	}
 
 
-
+	/**
+	 * Method : getPost
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param postId
+	 * @return
+	 * Method 설명 : 게시글 상세조회
+	 */
 	@Override
 	public PostVO getPost(int postId) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();

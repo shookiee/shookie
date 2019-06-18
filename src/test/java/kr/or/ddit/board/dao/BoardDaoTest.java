@@ -105,4 +105,22 @@ public class BoardDaoTest {
 		assertEquals(1, updateCnt);
 	}
 
+	
+	/**
+	* Method : getBoardTest
+	* 작성자 : PC23
+	* 변경이력 :
+	* Method 설명 : 입력 받은 게시판 아이디와 일치하는 게시판 정보 확인 테스트
+	*/
+	@Test
+	public void getBoardTest() {
+		/***Given***/
+		int boardId = 1;
+
+		/***When***/
+		BoardVO boardVo = boardDao.getBoard(boardId);
+		
+		/***Then***/
+		assertEquals("공지사항", boardVo.getBoardName());
+	}
 }

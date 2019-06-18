@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
 		if(userVo != null && userVo.getUserId().equals(userId) && userVo.getPass().equals(encryptPassword)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("USER_INFO", userVo);
-			session.setAttribute("boardList", boardList);
+			session.setAttribute("boardList", boardList);	// application에 setting 하는 것이 좋음
 			
 			
 			request.getRequestDispatcher("/main.jsp").forward(request, response);

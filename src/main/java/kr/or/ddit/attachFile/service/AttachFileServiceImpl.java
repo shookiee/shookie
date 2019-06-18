@@ -13,6 +13,14 @@ public class AttachFileServiceImpl implements IAttachFileService {
 
 	private IAttachFileDao fileDao = new AttachFileDaoImpl();
 	
+	/**
+	* Method : insertFile
+	* 작성자 : PC23
+	* 변경이력 :
+	* @param uploadFileList
+	* @return
+	* Method 설명 : 첨부파일 업로드
+	*/	
 	@Override
 	public int insertFile(List<AttachFileVO> uploadFileList) {
 		
@@ -45,24 +53,22 @@ public class AttachFileServiceImpl implements IAttachFileService {
 		return fileDao.getFileList(postId);
 	}
 
+	
+
+	/**
+	 * Method : getFile
+	 * 작성자 : SHOOKIE
+	 * 변경이력 :
+	 * @param fileId
+	 * @return
+	 * Method 설명 : 해당 게시글에 첨부된 파일 조회
+	 */
 	@Override
 	public AttachFileVO getFile(String fileId) {
 		
 		return fileDao.getFile(fileId);
 	}
 
-	/**
-	 * Method : deleteFile
-	 * 작성자 : SHOOKIE
-	 * 변경이력 :
-	 * @param postId
-	 * @return
-	 * Method 설명 : 게시글 수정 시 해당 게시글에 첨부된 파일 삭제
-	 */
-	@Override
-	public int deleteFile(int postId) {
-		return fileDao.deleteFile(postId);
-	}
 
 	
 	/**
